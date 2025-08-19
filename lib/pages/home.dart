@@ -15,20 +15,33 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BlocBuilder<Counter, int>(
-              bloc: myCounter,
-              buildWhen: (previous, current){
+          BlocListener<Counter, int>(
+            bloc: myCounter,
+            listener: (context, int){
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(duration: Duration(seconds: 2), content: Text("Data Genap"),
+                ),
+              );
+            },
+            listenWhen: (previous, current){
+              if(current %2 == 0){
+                return true;
+              }else{
                 return false;
-              },
-              builder: (context, state){
-                return Text(
-                          "$state",
-                          style: const TextStyle(
-                            fontSize: 50,
-                          )
-                );
               }
-              ),
+            },
+            child: BlocBuilder<Counter, int>(
+                bloc: myCounter,
+                builder: (context, state){
+                  return Text(
+                            "$state",
+                            style: const TextStyle(
+                              fontSize: 50,
+                            )
+                  );
+                }
+                ),
+          ),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
