@@ -11,13 +11,18 @@ void main(){
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
+  MyApp({super.key});
 
   final router = AppRoute();
+  final Counter mycounter = Counter();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateRoute: router.onRoute,
+    return BlocProvider(
+      create: (context) => Counter(),
+      child: MaterialApp(
+        home: HomePage(),
+      ),
     );
   }
 }

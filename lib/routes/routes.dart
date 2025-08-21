@@ -24,7 +24,7 @@ class AppRoute{
         );
       default:
         return MaterialPageRoute(
-          builder: (context) => const NotFoundPage(),
+          builder: (context) => const   NotFoundPage(),
           );
     }
   }

@@ -55,7 +55,13 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 20),
             FloatingActionButton(
               onPressed: (){
-                Navigator.of(context).pushNamed("/other");
+                // Global Access
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const OtherPages(),
+                ),
+                );
+                // Navigator.of(context).pushNamed("/other");
               },
               backgroundColor: Colors.blue,
               child: const Icon(Icons.arrow_forward, color: Colors.white),
