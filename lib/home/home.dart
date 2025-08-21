@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latihan_bloc/bloc/counter.dart';
 import 'package:latihan_bloc/home/red.dart';
+import 'package:latihan_bloc/pages/other_pages.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,35 +17,48 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.blue.shade400,
       ),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Material(
-              color: Colors.amber.shade400,
-              child: InkWell(
-                onTap: (){
-                  mycounter.decrement();
-                },
-                child: SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Icon(Icons.remove, color: Colors.white,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Material(
+                  color: Colors.amber.shade400,
+                  child: InkWell(
+                    onTap: (){
+                      mycounter.decrement();
+                    },
+                    child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Icon(Icons.remove, color: Colors.white,),
+                    ),
+                  ),
                 ),
-              ),
+                Red(),
+                Material(
+                  color: Colors.amber.shade400,
+                  child: InkWell(
+                    onTap: (){
+                      mycounter.increment();
+                    },
+                    child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Icon(Icons.add, color: Colors.white,),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Red(),
-            Material(
-              color: Colors.amber.shade400,
-              child: InkWell(
-                onTap: (){
-                  mycounter.increment();
-                },
-                child: SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Icon(Icons.add, color: Colors.white,),
-                ),
-              ),
+            SizedBox(height: 20),
+            FloatingActionButton(
+              onPressed: (){
+                Navigator.of(context).pushNamed("/other");
+              },
+              backgroundColor: Colors.blue,
+              child: const Icon(Icons.arrow_forward, color: Colors.white),
             ),
           ],
         ),
